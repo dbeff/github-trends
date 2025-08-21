@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "types": "tsc --project tsconfig.app.json --noEmit --skipLibCheck --pretty --diagnostics"
+    "ts": "tsc --project tsconfig.app.json --noEmit --skipLibCheck --pretty --diagnostics"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
