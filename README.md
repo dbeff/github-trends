@@ -23,25 +23,6 @@ Discover recently created repositories gaining traction on GitHub. Filter by lan
 - Auto refetch indicator (shows Updating… while fetching)
 - Graceful loading / empty / error states with retry
 
-## 📸 UI Overview
-
-The main page shows:
-
-1. Header / branding
-2. Filter controls (language + time range tabs)
-3. List of repository cards with stars, forks, watchers, and description
-
-## 🧱 Project Structure (excerpt)
-
-```text
-src/
-  components/        UI components (TrendingPage, RepoList, RepoCard...)
-  modules/           Domain modules (GitHub types + helpers)
-  store/             Redux slices & RTK Query API definitions
-  index.css          Tailwind import
-  main.tsx           App bootstrap
-```
-
 ## 🔌 GitHub API Usage
 
 Uses the public Search API endpoint `/search/repositories` with query parameters:
@@ -131,7 +112,7 @@ Dev / Tooling:
 | build   | Type-check then build for production |
 | preview | Preview the production build         |
 | lint    | Run ESLint on the codebase           |
-| ts      | Run isolated TypeScript diagnostics  |
+| types   | Run isolated TypeScript diagnostics  |
 
 ## 🔍 Potential Enhancements
 
