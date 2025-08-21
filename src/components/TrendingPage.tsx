@@ -101,7 +101,7 @@ function TimeRangeTabs({
             className={
               "px-3 py-2 font-medium transition focus:outline-none " +
               (active
-                ? "bg-blue-600 text-white"
+                ? "bg-indigo-600 text-white"
                 : "text-gray-600 hover:bg-gray-100 hover:text-gray-900")
             }
           >

@@ -1,47 +1,41 @@
-import RepoCard, { type RepoInfo } from './RepoCard'
-
-const mock: RepoInfo[] = [
-  {
-    id: '1',
-    owner: 'facebook',
-    name: 'react',
-    description: 'The library for web and native user interfaces.',
-    language: 'TypeScript',
-    languageColor: '#3178c6',
-    totalStars: 235000,
-    starsToday: 512,
-    forks: 52000,
-  },
-  {
-    id: '2',
-    owner: 'vercel',
-    name: 'next.js',
-    description: 'The React Framework for Production.',
-    language: 'TypeScript',
-    languageColor: '#3178c6',
-    totalStars: 125000,
-    starsToday: 241,
-    forks: 28000,
-  },
-  {
-    id: '3',
-    owner: 'microsoft',
-    name: 'TypeScript',
-    description: 'TypeScript is a superset of JavaScript that compiles to clean JavaScript output.',
-    language: 'TypeScript',
-    languageColor: '#3178c6',
-    totalStars: 97000,
-    starsToday: 180,
-    forks: 14000,
-  },
-]
+import RepoCard from "./RepoCard";
+import { useAppSelector } from "../store";
+import { useGetTrendingReposQuery } from "../store/github/githubApi";
 
 export default function RepoList() {
+  const timeRange = useAppSelector((s) => s.filters.timeRange);
+  const language = useAppSelector((s) => s.filters.language);
+  const { data, isLoading, isError, refetch, isFetching } =
+    useGetTrendingReposQuery({ timeRange, language });
+
+  if (isLoading) {
+    return (
+      <p className="text-sm text-gray-500">Loading trending repositories…</p>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-sm text-red-600">
+        Failed to load repositories.{" "}
+        <button onClick={() => refetch()} className="underline">
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  const repos = data?.repos ?? [];
+
   return (
     <div className="flex flex-col gap-4">
-      {mock.map((repo, i) => (
+      {isFetching && <p className="text-xs text-gray-400">Updating…</p>}
+      {repos.length === 0 && (
+        <p className="text-sm text-gray-500">No repositories found.</p>
+      )}
+      {repos.map((repo, i) => (
         <RepoCard key={repo.id} repo={repo} index={i} />
       ))}
     </div>
-  )
+  );
 }
