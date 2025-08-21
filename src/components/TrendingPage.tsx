@@ -5,6 +5,7 @@ import { setLanguage, setTimeRange } from "../store/filters/filtersSlice";
 import { useAppDispatch, useAppSelector } from "../store";
 import { FilterSelect } from "./FilterSelect";
 import { TimeRangeTabs } from "./TimeRangeTabs";
+import { GitHub } from "../modules/Github";
 
 export default function TrendingPage() {
   const dispatch = useAppDispatch();
@@ -29,14 +30,7 @@ export default function TrendingPage() {
               label="Language"
               value={language}
               onChange={(v) => dispatch(setLanguage(v))}
-              options={[
-                "Any",
-                "TypeScript",
-                "JavaScript",
-                "Python",
-                "Go",
-                "Rust",
-              ]}
+              options={Object.keys(GitHub.LANGUAGE_COLORS)}
             />
             <TimeRangeTabs
               value={timeRange}
