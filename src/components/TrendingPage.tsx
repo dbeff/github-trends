@@ -1,6 +1,8 @@
 import Header from "./Header";
 import RepoList from "./RepoList";
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { setLanguage, setTimeRange } from "../features/filters/filtersSlice";
+import type { TimeRange } from "../features/filters/filtersSlice";
 
 const timeRanges = [
   { id: "daily", label: "Today" },
@@ -9,8 +11,9 @@ const timeRanges = [
 ];
 
 export default function TrendingPage() {
-  const [timeRange, setTimeRange] = useState("daily");
-  const [language, setLanguage] = useState("Any");
+  const dispatch = useAppDispatch();
+  const timeRange = useAppSelector((s) => s.filters.timeRange);
+  const language = useAppSelector((s) => s.filters.language);
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
@@ -29,7 +32,7 @@ export default function TrendingPage() {
             <FilterSelect
               label="Language"
               value={language}
-              onChange={setLanguage}
+              onChange={(v) => dispatch(setLanguage(v))}
               options={[
                 "Any",
                 "TypeScript",
@@ -39,7 +42,10 @@ export default function TrendingPage() {
                 "Rust",
               ]}
             />
-            <TimeRangeTabs value={timeRange} onChange={setTimeRange} />
+            <TimeRangeTabs
+              value={timeRange}
+              onChange={(v) => dispatch(setTimeRange(v))}
+            />
           </div>
         </div>
         <RepoList />
@@ -81,8 +87,8 @@ function TimeRangeTabs({
   value,
   onChange,
 }: {
-  value: string;
-  onChange: (v: string) => void;
+  value: TimeRange;
+  onChange: (v: TimeRange) => void;
 }) {
   return (
     <div className="flex overflow-hidden rounded-md border border-gray-300 bg-white text-xs shadow-sm">
@@ -91,7 +97,7 @@ function TimeRangeTabs({
         return (
           <button
             key={r.id}
-            onClick={() => onChange(r.id)}
+            onClick={() => onChange(r.id as TimeRange)}
             className={
               "px-3 py-2 font-medium transition focus:outline-none " +
               (active
