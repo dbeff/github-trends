@@ -59,7 +59,7 @@ export const githubApi = createApi({
           languageColor: GitHub.colorForLanguage(item.language),
           totalStars: item.stargazers_count,
           forks: item.forks_count,
-          watchers: item.watchers_count,
+          url: item.html_url,
         }))
         return { repos, total: response.total_count }
       },

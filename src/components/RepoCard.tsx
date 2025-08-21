@@ -1,4 +1,4 @@
-import { Eye, GitFork, Star } from "lucide-react";
+import { GitFork, Star } from "lucide-react";
 import type { GitHub } from "../modules/Github";
 
 type Props = {
@@ -15,7 +15,7 @@ const RepoCard = ({ repo, index }: Props) => {
         </span>
         <div className="flex min-w-0 flex-col">
           <a
-            href={`https://github.com/${repo.owner}/${repo.name}`}
+            href={repo.url}
             className="inline-flex max-w-full items-center gap-2 text-sm font-semibold text-gray-600"
             target="_blank"
           >
@@ -51,10 +51,6 @@ const RepoCard = ({ repo, index }: Props) => {
         <span className="inline-flex items-center gap-1" title="Forks">
           <GitFork className="size-3" />
           {Intl.NumberFormat("en", { notation: "compact" }).format(repo.forks)}
-        </span>
-        <span className="inline-flex items-center gap-1 " title="Watchers">
-          <Eye className="size-3" />
-          {repo.watchers}
         </span>
       </footer>
     </article>

@@ -9,7 +9,7 @@ export namespace GitHub {
     languageColor?: string;
     totalStars: number;
     forks: number;
-    watchers: number;
+    url: string;
   };
 
   export type SearchResponse = {
@@ -26,7 +26,7 @@ export namespace GitHub {
       language: string | null
       languageColor: string | null
       description: string | null
-      watchers_count: number,
+      html_url: string
     }[]
   }
 
