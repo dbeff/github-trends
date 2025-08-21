@@ -30,7 +30,7 @@ export default function TrendingPage() {
               label="Language"
               value={language}
               onChange={(v) => dispatch(setLanguage(v))}
-              options={Object.keys(GitHub.LANGUAGE_COLORS)}
+              options={["Any", ...Object.keys(GitHub.LANGUAGE_COLORS)]}
             />
             <TimeRangeTabs
               value={timeRange}
