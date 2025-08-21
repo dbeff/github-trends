@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @layer base {
+  * {
+    @apply transition-colors duration-300;
+  }
   body {
     @apply antialiased bg-gray-50 text-gray-900;
   }
