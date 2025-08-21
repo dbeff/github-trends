@@ -1,8 +1,8 @@
 import Header from "./Header";
 import RepoList from "./RepoList";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { setLanguage, setTimeRange } from "../features/filters/filtersSlice";
-import type { TimeRange } from "../features/filters/filtersSlice";
+import { setLanguage, setTimeRange } from "../store/filters/filtersSlice";
+import type { TimeRange } from "../store/filters/filtersSlice";
+import { useAppDispatch, useAppSelector } from "../store";
 
 const timeRanges = [
   { id: "daily", label: "Today" },
