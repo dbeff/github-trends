@@ -66,8 +66,8 @@ function FilterSelect({
   options: string[];
 }) {
   return (
-    <label className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 text-xs font-medium text-gray-700 shadow-sm hover:border-gray-400">
-      <span>{label}</span>
+    <label className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 text-xs font-medium text-gray-700 hover:border-gray-400">
+      <span className="font-bold">{label}</span>
       <select
         className="bg-transparent py-2 text-xs font-normal focus:outline-none"
         value={value}
@@ -91,7 +91,7 @@ function TimeRangeTabs({
   onChange: (v: TimeRange) => void;
 }) {
   return (
-    <div className="flex overflow-hidden rounded-md border border-gray-300 bg-white text-xs shadow-sm">
+    <div className="flex overflow-hidden rounded-md border border-gray-300 bg-white text-xs">
       {timeRanges.map((r) => {
         const active = r.id === value;
         return (
