@@ -1,4 +1,7 @@
 @import "tailwindcss";
 
-/* You can extend base styles using Tailwind's layer directives if needed */
-/* @layer base { body { @apply antialiased bg-gray-950 text-gray-100; } } */
+@layer base {
+  body {
+    @apply antialiased bg-gray-50 text-gray-900;
+  }
+}
