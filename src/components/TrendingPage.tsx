@@ -1,14 +1,10 @@
 import Header from "./Header";
 import RepoList from "./RepoList";
 import { setLanguage, setTimeRange } from "../store/filters/filtersSlice";
-import type { TimeRange } from "../store/filters/filtersSlice";
-import { useAppDispatch, useAppSelector } from "../store";
 
-const timeRanges = [
-  { id: "daily", label: "Today" },
-  { id: "weekly", label: "This week" },
-  { id: "monthly", label: "This month" },
-];
+import { useAppDispatch, useAppSelector } from "../store";
+import { FilterSelect } from "./FilterSelect";
+import { TimeRangeTabs } from "./TimeRangeTabs";
 
 export default function TrendingPage() {
   const dispatch = useAppDispatch();
@@ -50,65 +46,6 @@ export default function TrendingPage() {
         </div>
         <RepoList />
       </main>
-    </div>
-  );
-}
-
-function FilterSelect({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  options: string[];
-}) {
-  return (
-    <label className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 text-xs font-medium text-gray-700 hover:border-gray-400">
-      <span className="font-bold">{label}</span>
-      <select
-        className="bg-transparent py-2 text-xs font-normal focus:outline-none"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      >
-        {options.map((o) => (
-          <option key={o} value={o} className="bg-white">
-            {o}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}
-
-function TimeRangeTabs({
-  value,
-  onChange,
-}: {
-  value: TimeRange;
-  onChange: (v: TimeRange) => void;
-}) {
-  return (
-    <div className="flex overflow-hidden rounded-md border border-gray-300 bg-white text-xs">
-      {timeRanges.map((r) => {
-        const active = r.id === value;
-        return (
-          <button
-            key={r.id}
-            onClick={() => onChange(r.id as TimeRange)}
-            className={
-              "px-3 py-2 font-medium transition focus:outline-none " +
-              (active
-                ? "bg-indigo-600 text-white"
-                : "text-gray-600 hover:bg-gray-100 hover:text-gray-900")
-            }
-          >
-            {r.label}
-          </button>
-        );
-      })}
     </div>
   );
 }
